@@ -1,44 +1,19 @@
-# Postgres for students
+Открываете терминал, заходите через cd в папку, где будет лежать репозиторий
+Клонируете репозиторий: git clone https://github.com/69Simba96/IT1-Infra.git
+Переходите в папку IT1-Infra
+Создаете образ и запускаете контейнер: docker compose up -d
 
-## What is inside
-- `docker-compose.yml` — starts a clean PostgreSQL container.
-- `.env` — database settings.
-- `student-sql/` — folder for SQL scripts.
+Запускаете DBeaver (или любую свою IDE для работы с Postgres)
+По умолчанию Postgres поднимается с такими параметрами:
+Хост: localhost
+Порт: 5432
+БД: IT1_db
+Username: IT1_user
+Password: password12345
+При желании параметры можно поменять в .env
 
-## How to start
-
-1. Clone the repository.
-2. Open the repository folder in a terminal.
-3. Start PostgreSQL:
-   ```bash
-   docker compose up -d
-   ```
-4. Check that the container is running:
-   ```bash
-   docker compose ps
-   ```
-5. Connect to the database:
-   ```bash
-   docker compose exec postgres psql -U student -d student_db
-   ```
-
-## Useful commands
-
-Stop the database:
-```bash
-docker compose down
-```
-
-Stop the database and remove data:
-```bash
-docker compose down -v
-```
-
-## Where to put SQL scripts
-Put your SQL files in `student-sql/`.
-
-Example:
-```bash
-student-sql/task1.sql
-student-sql/task2.sql
-```
+Выполняете задание в БД, SQL скрипты сохраняете в папку student-sql/
+Пушите свои скрипты в Github:
+git add .
+git commit -m "Любой текст коммита"
+git push -u origin main
