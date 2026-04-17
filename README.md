@@ -1,19 +1,19 @@
-Открываете терминал, заходите через cd в папку, где будет лежать репозиторий
-Клонируете репозиторий: git clone https://github.com/69Simba96/IT1-Infra.git
-Переходите в папку IT1-Infra
-Создаете образ и запускаете контейнер: docker compose up -d
-
-Запускаете DBeaver (или любую свою IDE для работы с Postgres)
-По умолчанию Postgres поднимается с такими параметрами:
-Хост: localhost
-Порт: 5432
-БД: IT1_db
-Username: IT1_user
-Password: password12345
-При желании параметры можно поменять в .env
-
-Выполняете задание в БД, SQL скрипты сохраняете в папку student-sql/
-Пушите свои скрипты в Github:
-git add .
-git commit -m "Любой текст коммита"
-git push -u origin main
+Открываете терминал, заходите через cd в папку, где будет лежать репозиторий  
+Клонируете репозиторий: git clone https://github.com/69Simba96/IT1-Infra.git  
+Переходите в папку IT1-Infra  
+Создаете образ и запускаете контейнер: docker compose up -d  
+  
+Запускаете DBeaver (или любую свою IDE для работы с Postgres)  
+По умолчанию Postgres поднимается с такими параметрами:  
+Хост: localhost  
+Порт: 5432  
+БД: IT1_db  
+Username: IT1_user  
+Password: password12345  
+При желании параметры можно поменять в .env  
+  
+Выполняете задание в БД, SQL скрипты сохраняете в папку student-sql/  
+Пушите свои скрипты в Github:  
+git add .  
+git commit -m "Любой текст коммита"  
+git push -u origin main  
