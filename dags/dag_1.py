@@ -43,6 +43,7 @@ def read_file(**kwargs):
             for row in lines:
                 cursor.execute("INSERT INTO target (name, data) VALUES (%s, %s);", (file_to_process, row))
             cursor.execute("INSERT INTO processed_files (name) VALUES (%s);", (file_to_process,))
+        conn.commit()
 
     kwargs['ti'].xcom_push(key='processed_file_name', value=file_to_process)
     kwargs['ti'].xcom_push(key='source_row_count', value=source_row_count)

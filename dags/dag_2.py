@@ -29,10 +29,6 @@ def check_dq(**kwargs):
     if not is_valid:
         raise ValueError("Data Quality check failed. Row counts do not match")
 
-    print(f"--- РЕЗУЛЬТАТ DQ-ПРОВЕРКИ ДЛЯ {file_name} ---")
-    print(f"Строк в исходном файле: {source_row_count}")
-    print(f"Строк в таблице target: {target_row_count}")
-    print(f"Статус валидации: {'УСПЕШНО' if is_valid else 'ОШИБКА'}")
 
 default_args = {
     'owner': 'airflow',
