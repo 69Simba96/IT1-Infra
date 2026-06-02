@@ -50,7 +50,9 @@ services:
   airflow-init:
     <<: *airflow-common
     container_name: airflow-init
-    command: version
+    command: >
+      bash -c "airflow db migrate &&
+      airflow users create --username admin --firstname Admin --lastname Admin --role Admin --email admin@example.com --password admin"
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres-student:5432/${POSTGRES_DB}

@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS target (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    data TEXT,
+    loaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS processed_files (
+    name VARCHAR(255) PRIMARY KEY,
+    processed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS dq_log (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    source_count INT,
+    target_count INT,
+    is_valid BOOLEAN,
+    checked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
