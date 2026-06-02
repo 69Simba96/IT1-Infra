@@ -10,7 +10,7 @@ def check_dq(**kwargs):
     file_name = dag_run_conf.get('file_name')
     source_row_count = dag_run_conf.get('source_row_count')
 
-    if file_name or source_row_count is None:
+    if not file_name or source_row_count is None:
         return
 
     source_row_count = int(source_row_count)
