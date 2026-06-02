@@ -5,7 +5,7 @@ from airflow.operators.python import PythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 
-INPUT_DIR = 'C:/Users/Katy/IT1-Infra/airflow_input/'
+INPUT_DIR = '/opt/airflow/airflow_input/'
 
 def read_file(**kwargs):
     pg_hook = PostgresHook(postgres_conn_id='postgres_default')
