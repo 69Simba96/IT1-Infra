@@ -1,0 +1,51 @@
+Для выполнения проекта была развернута колоночная база данных ClickHouse в Docker-контейнере.
+Логи веб-сервиса (50 строк в формате CSV) были успешно импортированы в таблицу web_logs
+Схема таблицы определена следующим SQL-запросом:
+
+CREATE TABLE web_logs (
+     timestamp DateTime,
+     user_id UInt64,
+     url String,
+     response_time UInt32,
+     status_code UInt16
+) ENGINE = MergeTree()
+ORDER BY timestamp;
+
+Для проведения анализа были спроектированы и выполнены следующие SQL-запросы:
+
+    Общее количество запросов за каждый день.
+SELECT toDate(timestamp) AS request_date, count(url) AS requests_count
+FROM web_logs wl
+GROUP BY request_date
+
+    Среднее время ответа для каждого URL.
+SELECT url, avg(response_time) AS avg_time
+FROM web_logs wl
+GROUP BY url
+
+    Количество запросов с ошибками (например, статус-коды 4xx и 5xx).
+SELECT count(url) AS request_count
+FROM web_logs wl
+WHERE toString(status_code) LIKE '4%' OR toString(status_code) LIKE '5%';
+
+    Топ-10 пользователей по количеству запросов.
+SELECT user_id, count(url) AS request_count
+FROM web_logs wl
+GROUP BY user_id
+LIMIT 10
+
+
+Выводы:
+Распределение трафика:
+Весь объем логов (50 запросов) поступил за одни сутки — 2026-06-01.
+
+Узкие места производительности:
+Самым медленным эндпоинтом оказался /payment со средним временем ответа 911 мс.
+Остальные страницы (например, /home, /cart) отдаются быстрее чем за 100 мс.
+
+Надежность сервиса:
+Выявлено 8 ошибочных запросов.
+Из них зафиксированы как клиентские ошибки авторизации и путей (401, 403, 404, 429), так и критические серверные ошибки 500/503 на страницах оплаты и API.
+
+Профиль нагрузки:
+Лидер по числу обращений клиент с user_id 1002 (8 запросов).
